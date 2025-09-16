@@ -69,6 +69,30 @@
             Console.WriteLine("Sorted array: " + string.Join(", ", array));
         }
 
+        static int BinarySearch(int[] sortedArray, int target)
+        {
+            int mid = -1;
+            int left = 0;
+            int right = sortedArray.Length - 1;
+            while (left <= right)
+            {
+                mid = left + (right - left) / 2;
+                if (sortedArray[mid] == target)
+                {
+                    Console.WriteLine($"Element found at index {mid}");
+                    return(mid);
+                }
+                if (sortedArray[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+            return(mid);
+        }
 
         static void Main(string[] args)
         {
@@ -78,6 +102,8 @@
             IntArrAdder(new int[] { 1, 2, 3, 4, 5 });
             PrimeChecker(15);
             BubbleSort(new int[] { 64, 34, 25, 12, 22, 11, 90,1234,4324,324,62,344,6,63,6,77,54,456,443 });
+            int WhereFound = BinarySearch(new int[] { 11, 12, 22, 25, 34, 64, 90, }, 11);
+            Console.WriteLine($"Element found at index {WhereFound}");
         }
     }
 }
